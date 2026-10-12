@@ -1,0 +1,33 @@
+{
+  "schema_version": "ade.analysis-report.v0.1",
+  "report_id": "report-demo-001",
+  "task_ref": {
+    "task_id": "task-demo-001",
+    "input_digest": "sha256:1e3507e1ecb4d9d6c60d0ff95a867d19de086e4b2098156cb89412d28d7a0388"
+  },
+  "status": "UNRESOLVED",
+  "findings": [
+    {
+      "id": "F-1",
+      "title": "Repeated work is observable",
+      "detail": "Multiple consumers use the same immutable input."
+    }
+  ],
+  "blockers": [
+    {
+      "id": "B-1",
+      "statement": "The safe reuse boundary is not yet demonstrated."
+    }
+  ],
+  "next_actions": [
+    {
+      "id": "A-1",
+      "statement": "Measure direct and shared processing at representative fan-out."
+    }
+  ],
+  "authorization": {
+    "operational_grant": false
+  },
+  "semantic_digest": "sha256:d7bfd58aeb2f527ab16e08e5b7bc94993a669a5133f24b3549dfb54f72075f45"
+}
+

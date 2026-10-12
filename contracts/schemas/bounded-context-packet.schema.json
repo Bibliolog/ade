@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ade.biblionica.ru/contracts/bounded-context-packet.schema.json",
+  "title": "BoundedContextPacket",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "context_id",
+    "task_id",
+    "goal_digest",
+    "state_digest",
+    "selection_rule",
+    "items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "ade.bounded-context-packet.v0.1"
+    },
+    "context_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goal_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "state_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "selection_rule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "source_ref",
+          "digest",
+          "relevance"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "enum": [
+              "fact",
+              "constraint",
+              "evidence",
+              "uncertainty",
+              "decision"
+            ]
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "digest": {
+            "$ref": "#/$defs/digest"
+          },
+          "relevance": {
+            "type": "string",
+            "minLength": 1
+          },
+          "content": {
+            "type": [
+              "string",
+              "object",
+              "array"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  }
+}
+

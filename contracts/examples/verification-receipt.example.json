@@ -1,0 +1,25 @@
+{
+  "schema_version": "ade.verification-receipt.v0.1",
+  "verification_id": "verification-demo-001",
+  "proposal_id": "proposal-demo-001",
+  "base_state_digest": "sha256:8a30d1e96c7f3b4c4b7c2e83a9bbbe3a670f4da4f41d237d99211bf4db517a26",
+  "observed_state_digest": "sha256:8a30d1e96c7f3b4c4b7c2e83a9bbbe3a670f4da4f41d237d99211bf4db517a26",
+  "status": "UNRESOLVED",
+  "checks": [
+    {
+      "id": "V-1",
+      "statement": "Output digests match",
+      "result": "PASS"
+    },
+    {
+      "id": "V-2",
+      "statement": "Target workload threshold established",
+      "result": "UNKNOWN"
+    }
+  ],
+  "evidence_refs": [
+    "E-1"
+  ],
+  "operational_grant": false
+}
+

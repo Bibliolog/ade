@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ade.biblionica.ru/contracts/verification-receipt.schema.json",
+  "title": "VerificationReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "verification_id",
+    "proposal_id",
+    "base_state_digest",
+    "observed_state_digest",
+    "status",
+    "checks",
+    "evidence_refs",
+    "operational_grant"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "ade.verification-receipt.v0.1"
+    },
+    "verification_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposal_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_state_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "observed_state_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "status": {
+      "enum": [
+        "VERIFIED",
+        "REJECTED",
+        "UNRESOLVED",
+        "STALE",
+        "NOT_EVALUABLE"
+      ]
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "statement",
+          "result"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "result": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNKNOWN",
+              "NOT_APPLICABLE"
+            ]
+          }
+        }
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "operational_grant": {
+      "const": false
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  }
+}
+

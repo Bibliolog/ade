@@ -1,0 +1,38 @@
+{
+  "schema_version": "ade.task-envelope.v0.1",
+  "task_id": "task-demo-001",
+  "goal": {
+    "statement": "Reduce repeated processing while preserving output identity",
+    "required_outcome": "A measurable reduction with unchanged output digests"
+  },
+  "scope": {
+    "state_digest": "sha256:8a30d1e96c7f3b4c4b7c2e83a9bbbe3a670f4da4f41d237d99211bf4db517a26",
+    "included_entities": [
+      "processing subsystem",
+      "benchmark observations"
+    ],
+    "excluded_entities": [
+      "deployment environment"
+    ]
+  },
+  "constraints": [
+    {
+      "id": "C-1",
+      "statement": "Output digest must remain unchanged",
+      "severity": "required"
+    },
+    {
+      "id": "C-2",
+      "statement": "Fallback must remain available",
+      "severity": "required"
+    }
+  ],
+  "evidence_refs": [
+    {
+      "id": "E-1",
+      "kind": "benchmark",
+      "digest": "sha256:1f2a7c40fa894d361736c0d61fb72af8773493645d3f1092c1c52217dcfc0010"
+    }
+  ]
+}
+

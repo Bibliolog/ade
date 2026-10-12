@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ade.biblionica.ru/contracts/external-proposal.schema.json",
+  "title": "ExternalProposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "proposal_id",
+    "task_id",
+    "base_state_digest",
+    "proposer",
+    "status",
+    "rationale",
+    "claimed_outcomes",
+    "accepted_knowledge",
+    "operational_grant"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "ade.external-proposal.v0.1"
+    },
+    "proposal_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_state_digest": {
+      "$ref": "#/$defs/digest"
+    },
+    "proposer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "label"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "human",
+            "software",
+            "ai"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "const": "EXTERNAL_PROPOSAL"
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claimed_outcomes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "artifact_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "accepted_knowledge": {
+      "const": false
+    },
+    "operational_grant": {
+      "const": false
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  }
+}
+

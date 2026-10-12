@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ade.biblionica.ru/contracts/analysis-report.schema.json",
+  "title": "AnalysisReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "report_id",
+    "task_ref",
+    "status",
+    "findings",
+    "blockers",
+    "next_actions",
+    "authorization",
+    "semantic_digest"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "ade.analysis-report.v0.1"
+    },
+    "report_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_id",
+        "input_digest"
+      ],
+      "properties": {
+        "task_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input_digest": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "SUPPORTED",
+        "CONTRADICTED",
+        "UNRESOLVED",
+        "NOT_EVALUABLE"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/actionItem"
+      }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/actionItem"
+      }
+    },
+    "context_packet_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operational_grant"
+      ],
+      "properties": {
+        "operational_grant": {
+          "const": false
+        }
+      }
+    },
+    "semantic_digest": {
+      "$ref": "#/$defs/digest"
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "detail"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "actionItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "statement"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,19 @@
+{
+  "schema_version": "ade.bounded-context-packet.v0.1",
+  "context_id": "context-demo-001",
+  "task_id": "task-demo-001",
+  "goal_digest": "sha256:d771541c558e632c9e05d52af3c6d4189f415473fe104210c58bb0b3cb86c6b8",
+  "state_digest": "sha256:8a30d1e96c7f3b4c4b7c2e83a9bbbe3a670f4da4f41d237d99211bf4db517a26",
+  "selection_rule": "Include only items required to evaluate the stated outcome and constraints.",
+  "items": [
+    {
+      "id": "CTX-1",
+      "type": "constraint",
+      "source_ref": "task-demo-001#C-1",
+      "digest": "sha256:596c87b4f2fe90c38d32349ec9a597935732ad41746c9b2fd2ad1d758a1dae3e",
+      "relevance": "Defines the mandatory identity condition.",
+      "content": "Output digest must remain unchanged"
+    }
+  ]
+}
+

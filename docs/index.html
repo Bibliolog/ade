@@ -1,0 +1,134 @@
+<!-- SPDX-License-Identifier: MPL-2.0 -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Admissibility Driven Engineering — public interface preview">
+  <title>ADE — Interface Preview</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="ADE home">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span><strong>ADE</strong><small>Interface preview</small></span>
+      </a>
+      <nav aria-label="Workspace sections">
+        <button class="nav-item active" data-panel="task"><span>01</span> Task</button>
+        <button class="nav-item" data-panel="analysis"><span>02</span> Analysis</button>
+        <button class="nav-item" data-panel="proposal"><span>03</span> Proposal</button>
+        <button class="nav-item" data-panel="verification"><span>04</span> Verification</button>
+      </nav>
+      <div class="boundary-note">
+        <span class="signal"></span>
+        <div><strong>Local demo</strong><small>No backend connected</small></div>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Admissibility Driven Engineering</p>
+          <h1>Analyze a bounded goal and candidate action</h1>
+        </div>
+        <div class="header-actions">
+          <button id="resetButton" class="button secondary">Reset</button>
+          <button id="demoButton" class="button primary">Load demo</button>
+        </div>
+      </header>
+
+      <section class="status-strip" aria-label="Current state">
+        <div><span>Task</span><strong id="taskState">DRAFT</strong></div>
+        <div><span>Analysis</span><strong id="analysisState">NOT RUN</strong></div>
+        <div><span>Proposal</span><strong id="proposalState">NONE</strong></div>
+        <div><span>Authority</span><strong class="denied">NOT GRANTED</strong></div>
+      </section>
+
+      <section id="task" class="panel active" aria-labelledby="taskHeading">
+        <div class="panel-heading">
+          <div><p class="step">Step 01</p><h2 id="taskHeading">Define the task boundary</h2></div>
+          <span class="pill neutral">TaskEnvelope</span>
+        </div>
+        <div class="form-grid">
+          <label class="wide">Goal
+            <textarea id="goalInput" rows="3" placeholder="Describe one bounded engineering outcome"></textarea>
+          </label>
+          <label>State digest
+            <input id="stateInput" inputmode="text" placeholder="sha256:…">
+          </label>
+          <label>Scope
+            <input id="scopeInput" placeholder="Included entity or boundary">
+          </label>
+          <label class="wide">Required constraint
+            <input id="constraintInput" placeholder="Condition that must remain true">
+          </label>
+        </div>
+        <div class="panel-actions">
+          <p>Builds a local request object only. No analysis is performed by this page.</p>
+          <button id="buildButton" class="button primary">Build request</button>
+        </div>
+      </section>
+
+      <section id="analysis" class="panel" aria-labelledby="analysisHeading">
+        <div class="panel-heading">
+          <div><p class="step">Step 02</p><h2 id="analysisHeading">Inspect the structured report</h2></div>
+          <span id="reportBadge" class="pill unresolved">UNRESOLVED</span>
+        </div>
+        <div class="metric-grid">
+          <article><span>Findings</span><strong id="findingCount">0</strong></article>
+          <article><span>Blockers</span><strong id="blockerCount">0</strong></article>
+          <article><span>Next actions</span><strong id="actionCount">0</strong></article>
+        </div>
+        <div id="analysisContent" class="empty-state">
+          <strong>No report loaded</strong>
+          <p>Load the fixture to see the intended report structure.</p>
+        </div>
+      </section>
+
+      <section id="proposal" class="panel" aria-labelledby="proposalHeading">
+        <div class="panel-heading">
+          <div><p class="step">Step 03</p><h2 id="proposalHeading">Review an external proposal</h2></div>
+          <span class="pill warning">UNVERIFIED</span>
+        </div>
+        <div class="callout">
+          <strong>A proposal is not an accepted result.</strong>
+          <p>A human, script, or external AI client may submit a candidate through the same contract. Submission does not change accepted state.</p>
+        </div>
+        <pre id="proposalJson" class="code-block">No proposal loaded.</pre>
+      </section>
+
+      <section id="verification" class="panel" aria-labelledby="verificationHeading">
+        <div class="panel-heading">
+          <div><p class="step">Step 04</p><h2 id="verificationHeading">Read the verification receipt</h2></div>
+          <span id="verificationBadge" class="pill stale">NOT EVALUATED</span>
+        </div>
+        <div class="verification-layout">
+          <div>
+            <h3>Checks</h3>
+            <ul id="checkList" class="check-list"><li class="muted">No checks loaded.</li></ul>
+          </div>
+          <div class="authority-card">
+            <span>Operational authority</span>
+            <strong>NOT GRANTED</strong>
+            <p>This preview can describe evidence and status. It cannot apply a change.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="json-drawer" aria-labelledby="payloadHeading">
+        <div class="drawer-heading">
+          <div><p class="eyebrow">Local payload</p><h2 id="payloadHeading">Contract view</h2></div>
+          <button id="copyButton" class="button secondary">Copy JSON</button>
+        </div>
+        <pre id="payloadJson" class="code-block">{}</pre>
+        <p id="copyStatus" class="copy-status" role="status"></p>
+      </section>
+    </main>
+  </div>
+  <script src="demo-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
